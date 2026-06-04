@@ -12,12 +12,17 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
 // Penyimpanan Metadata & Gambar di luar workspace (untuk mencegah Live Server reload otomatis)
-const METADATA_DIR = 'C:\\Users\\Jeparastore\\.gemini\\antigravity\\scratch';
-const METADATA_FILE = path.join(METADATA_DIR, 'event_metadata.json');
-const UPLOADS_DIR = path.join(METADATA_DIR, 'uploads');
+const fs = require('fs');
+const path = require('path');
 
-if (!fs.existsSync(UPLOADS_DIR)) {
-    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+// Menggunakan folder /tmp jika di Vercel, atau folder lokal jika di komputer sendiri
+const isVercel = process.env.VERCEL;
+const uploadDir = isVercel 
+  ? path.join('/tmp', 'uploads') 
+  : path.join(__dirname, 'uploads'); 
+
+if (!fs.existsSync(uploadDir)){
+    fs.mkdirSync(uploadDir, { recursive: true });
 }
 
 // Sajikan folder uploads secara statis untuk gambar cover event
