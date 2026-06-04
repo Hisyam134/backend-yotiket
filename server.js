@@ -1,3 +1,4 @@
+const path = require('path');
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -591,7 +592,7 @@ async function finalizePayment(order_id) {
                 attachments: [
                     {
                         filename: 'logo.png',
-                        path: 'C:\\Users\\Jeparastore\\Documents\\percobaan\\frontend\\logo.png',
+                        path: path.join(__dirname, 'logo.png'),
                         cid: 'logo_yotiket'
                     },
                     {
