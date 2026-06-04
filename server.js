@@ -763,7 +763,6 @@ app.post('/api/validate-ticket', async (req, res) => {
 });
 
 
-const app = express();
 
 app.get('/', (req, res) => {
   res.send('Server Node.js berhasil berjalan di Vercel!');
