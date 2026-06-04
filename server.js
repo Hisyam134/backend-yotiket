@@ -13,7 +13,7 @@ app.use(express.json({ limit: '10mb' }));
 
 // Penyimpanan Metadata & Gambar di luar workspace (untuk mencegah Live Server reload otomatis)
 
-const path = require('path');
+
 
 // Menggunakan folder /tmp jika di Vercel, atau folder lokal jika di komputer sendiri
 const isVercel = process.env.VERCEL;
